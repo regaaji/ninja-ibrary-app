@@ -22,7 +22,7 @@
 ## Build Setup
 
 1. Clone repository
-   `$ git clone https://github.com/regaaji/ninja-library-app.git`
+   `$ git clone https://github.com/regaaji/ninja-ibrary-app.git`
 
 2. Install depedencies
 
