@@ -75,3 +75,6 @@ $ yarn start
 - `src/controllers` - This folder contain configuration files that links Models to Route
 
 ---
+
+
+Copyright © 2020 by Rega Aji Prayogo
