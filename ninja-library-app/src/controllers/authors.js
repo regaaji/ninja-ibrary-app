@@ -14,6 +14,17 @@ module.exports = {
 
         }
     },
+    
+      getAllBorrowBookData: async function (request, response) {
+        try {
+            const user_id = request.params.id
+            const result = await authorModels.getAllBorrowBookData(user_id)
+            return helper.response(response, 200, result)
+        } catch (error) {
+            helper.customErrorResponse(response, 404, 'cant see the borrow book')
+
+        }
+    },
 
      postAuthors: async function (request, response) {
 
