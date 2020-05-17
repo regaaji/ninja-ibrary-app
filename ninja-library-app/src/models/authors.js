@@ -12,6 +12,18 @@ module.exports = {
             })
         })
     },
+    
+     getAllBorrowBookData: function (user_id) {
+        return new Promise(function (resolve, reject) {
+            connection.query('SELECT * FROM borrows WHERE user_id = ?', [user_id], function (error, result) {
+                if (!error) {
+                    resolve(result)
+                } else {
+                    reject(new Error(error))
+                }
+            })
+        })
+    },
 
     postAuthors: function (setData) {
         return new Promise(function (resolve, reject) {
