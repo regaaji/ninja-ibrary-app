@@ -60,6 +60,36 @@ module.exports = {
         })
       })
     },
+    
+     getAllBorrowBook: function (id) {
+        return new Promise(function (resolve, reject) {
+            connection.query('SELECT * FROM borrows  INNER JOIN books ON borrows.books_id = books.id WHERE id_borrow = ?', [id], function (error, result) {
+                if (!error) {
+                    resolve(result)
+                } else {
+                    reject(new Error(error))
+                }
+            })
+        })
+    },
+
+    borrowHistoryBookData: (id) => {
+        return new Promise((resolve, reject) => {
+        connection.query('UPDATE borrows SET status = ?, updated_at = ? WHERE id_borrow = ?', [2, new Date(), id], (error, result) => {
+          if (error) reject(new Error(error))
+            resolve(result)
+        })
+      })
+    },
+
+    borrowHistoryBookData1: (id_book) => {
+       return new Promise((resolve, reject) => {
+        connection.query('UPDATE books SET status = ? WHERE id = ?', [2, id_book], (error, result) => {
+          if (error) reject(new Error(error))
+            resolve(result)
+        })
+      })
+    },
 
      borrowBookData: (id) => {
       return new Promise((resolve, reject) => {
