@@ -102,6 +102,49 @@ module.exports = {
       helper.customErrorResponse(response, 404, 'Internal server error!')
     }
   },
+  
+  getAllBorrowBook: async (request, response) => {
+      try {
+       
+          const id = request.params.id
+
+          console.log("id", id)
+          const result = await Book.getAllBorrowBook(id)
+          helper.response(response, 200, result)
+      
+      } catch (error) {
+        console.log(error)
+        helper.customErrorResponse(response, 404, 'cant see the borrow book details')
+      }
+    },
+
+
+  borrowHistoryBookData: async (request, response) => {
+    try {
+ 
+          const id = request.params.id
+          const data = {
+            ...request.body
+          }
+
+          // console.log(data.user_id)
+          const id_book = data.books_id;
+
+
+             await Book.borrowHistoryBookData(id)
+             await Book.borrowHistoryBookData1(id_book)
+         
+            helper.response(response, 200, {message: 'The book was successfully borrowed'})                    
+          
+
+          // helper.response(response, 200, result)
+
+      
+    } catch (error) {
+      console.log(error)
+      helper.customErrorResponse(response, 404, 'Internal server error!')
+    }
+  },
 
   borrowBookData: async (request, response) => {
     try {
@@ -129,6 +172,27 @@ module.exports = {
       helper.customErrorResponse(response, 404, 'Internal server error!')
     }
   },
+  
+  addBorrowBook: async (request, response) => {
+      try {
+   
+            const data = {
+              ...request.body,
+              created_at: new Date()
+            }
+            const result = await Book.addBorrowBook(data)
+            data.id = result.insertId
+            helper.response(response, 200, data)
+
+            // helper.response(response, 200, result)
+
+        
+      } catch (error) {
+        console.log(error)
+        helper.customErrorResponse(response, 404, 'Internal server error!')
+      }
+    },
+
 
 
 
